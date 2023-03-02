@@ -16,9 +16,9 @@ public class AcceptanceTest {
     private SimpleSmtpServer mailServer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mailServer = SimpleSmtpServer.start(NONSTANDARD_PORT);
-        birthdayService = new BirthdayService(new MailSender("localhost", NONSTANDARD_PORT));
+        birthdayService = new BirthdayService(new MailSender("localhost", NONSTANDARD_PORT), new LineEmployeeRepository());
     }
 
     @After
