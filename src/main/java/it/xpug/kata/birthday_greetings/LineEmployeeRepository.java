@@ -9,10 +9,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LineEmployeeRepository {
-    public List<Employee> getEmployeesWhoseBirthdayItIs(String fileName, XDate xDate) {
+public class LineEmployeeRepository implements EmployeeRepository {
+    private final String fileName;
+
+    public LineEmployeeRepository(String fileName) {
+        this.fileName = fileName;
+    }
+
+    @Override
+    public List<Employee> getEmployeesWhoseBirthdayItIs(XDate xDate) {
         List<Employee> employeeStream = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+        try (Stream<String> lines = Files.lines(Paths.get(this.fileName))) {
             employeeStream = lines
                     .skip(1) // skip header
                     .map((str) -> {

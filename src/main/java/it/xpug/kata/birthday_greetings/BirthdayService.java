@@ -3,15 +3,15 @@ package it.xpug.kata.birthday_greetings;
 public class BirthdayService {
 
     private final GreetingsSender greetingsSender;
-    private final LineEmployeeRepository lineEmployeeRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public BirthdayService(GreetingsSender greetingsSender, LineEmployeeRepository lineEmployeeRepository) {
+    public BirthdayService(GreetingsSender greetingsSender, EmployeeRepository employeeRepository) {
         this.greetingsSender = greetingsSender;
-        this.lineEmployeeRepository = lineEmployeeRepository;
+        this.employeeRepository = employeeRepository;
     }
 
-    public void sendGreetings(String fileName, XDate xDate) {
-        for (Employee employee : lineEmployeeRepository.getEmployeesWhoseBirthdayItIs(fileName, xDate)) {
+    public void sendGreetings(XDate xDate) {
+        for (Employee employee : employeeRepository.getEmployeesWhoseBirthdayItIs(xDate)) {
             String recipient = employee.getEmail();
             String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.getFirstName());
             String subject = "Happy Birthday!";
