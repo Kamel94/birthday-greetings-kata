@@ -1,14 +1,12 @@
 package it.xpug.kata.birthday_greetings;
 
-import javax.mail.MessagingException;
-
 public class BirthdayService {
 
-    private final MailSender mailSender;
+    private final GreetingsSender greetingsSender;
     private final LineEmployeeRepository lineEmployeeRepository;
 
-    public BirthdayService(MailSender mailSender, LineEmployeeRepository lineEmployeeRepository) {
-        this.mailSender = mailSender;
+    public BirthdayService(GreetingsSender greetingsSender, LineEmployeeRepository lineEmployeeRepository) {
+        this.greetingsSender = greetingsSender;
         this.lineEmployeeRepository = lineEmployeeRepository;
     }
 
@@ -17,11 +15,7 @@ public class BirthdayService {
             String recipient = employee.getEmail();
             String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.getFirstName());
             String subject = "Happy Birthday!";
-            try {
-                this.mailSender.sendMessage("sender@here.com", subject, body, recipient);
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
-            }
+            this.greetingsSender.sendMessage("sender@here.com", subject, body, recipient);
         }
     }
 
