@@ -38,7 +38,7 @@ public class AcceptanceTest {
         assertEquals("Happy Birthday!", message.getHeaderValue("Subject"));
         String[] recipients = message.getHeaderValues("To");
         assertEquals(1, recipients.length);
-        assertEquals("john.doe@foobar.com", recipients[0].toString());
+        assertEquals("john.doe@foobar.com", recipients[0]);
     }
 
     @Test

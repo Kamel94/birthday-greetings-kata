@@ -1,7 +1,8 @@
 package it.xpug.kata.birthday_greetings;
-import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 
@@ -20,9 +21,9 @@ public class EmployeeTest {
 		Employee same = new Employee("First", "Last", "1999/09/01", "first@last.com");
 		Employee different = new Employee("First", "Last", "1999/09/01", "boom@boom.com");
 
-		assertFalse(base.equals(null));
-		assertFalse(base.equals(""));
-		assertTrue(base.equals(same));
-		assertFalse(base.equals(different));
+		assertNotEquals(null, base);
+		assertNotEquals("", base);
+		assertEquals(base, same);
+		assertNotEquals(base, different);
 	}
 }

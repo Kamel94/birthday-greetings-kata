@@ -1,8 +1,8 @@
 package it.xpug.kata.birthday_greetings;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
-import org.junit.*;
+import static org.junit.Assert.*;
 
 
 
@@ -32,11 +32,11 @@ public class XDateTest {
 		XDate same = new XDate("2000/01/02");
 		XDate different = new XDate("2000/01/04");
 
-		assertFalse(base.equals(null));
-		assertFalse(base.equals(""));
-		assertTrue(base.equals(base));
-		assertTrue(base.equals(same));
-		assertFalse(base.equals(different));
+		assertNotEquals(null, base);
+		assertNotEquals("", base);
+		assertEquals(base, base);
+		assertEquals(base, same);
+		assertNotEquals(base, different);
 	}
 
 }
