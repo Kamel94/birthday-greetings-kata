@@ -7,7 +7,6 @@ import it.xpug.kata.birthday_greetings.domain.XDate;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,9 +20,8 @@ public class LineEmployeeRepository implements EmployeeRepository {
 
     @Override
     public List<Employee> getEmployeesWhoseBirthdayItIs(XDate xDate) {
-        List<Employee> employeeStream = new ArrayList<>();
         try (Stream<String> lines = Files.lines(Paths.get(this.fileName))) {
-            employeeStream = lines
+            return lines
                     .skip(1) // skip header
                     .map((str) -> {
                         String[] employeeData = str.split(", ");
@@ -32,8 +30,7 @@ public class LineEmployeeRepository implements EmployeeRepository {
                     .filter(employee -> employee.isBirthday(xDate))
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return employeeStream;
     }
 }
