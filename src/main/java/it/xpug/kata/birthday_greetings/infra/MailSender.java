@@ -1,4 +1,6 @@
-package it.xpug.kata.birthday_greetings;
+package it.xpug.kata.birthday_greetings.infra;
+
+import it.xpug.kata.birthday_greetings.domain.GreetingsSender;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

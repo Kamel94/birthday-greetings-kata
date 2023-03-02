@@ -1,9 +1,12 @@
-package it.xpug.kata.birthday_greetings;
+package it.xpug.kata.birthday_greetings.infra;
+
+import it.xpug.kata.birthday_greetings.domain.Employee;
+import it.xpug.kata.birthday_greetings.domain.EmployeeRepository;
+import it.xpug.kata.birthday_greetings.domain.XDate;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,11 +27,7 @@ public class LineEmployeeRepository implements EmployeeRepository {
                     .skip(1) // skip header
                     .map((str) -> {
                         String[] employeeData = str.split(", ");
-                        try {
-                            return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
-                        } catch (ParseException e) {
-                            throw new RuntimeException(e);
-                        }
+                        return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
                     })
                     .filter(employee -> employee.isBirthday(xDate))
                     .collect(Collectors.toList());

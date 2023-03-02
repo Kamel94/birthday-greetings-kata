@@ -1,4 +1,4 @@
-package it.xpug.kata.birthday_greetings;
+package it.xpug.kata.birthday_greetings.domain;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,14 +7,18 @@ import java.util.GregorianCalendar;
 
 public class XDate {
 
-	private Date date;
+	private final Date date;
 
 	public XDate() {
 		date = new Date();
 	}
 
-	public XDate(String yyyyMMdd) throws ParseException {
-		date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyyMMdd);
+	public XDate(String yyyyMMdd) {
+		try {
+			date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyyMMdd);
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public int getDay() {

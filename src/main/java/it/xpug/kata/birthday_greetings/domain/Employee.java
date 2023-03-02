@@ -1,6 +1,4 @@
-package it.xpug.kata.birthday_greetings;
-
-import java.text.ParseException;
+package it.xpug.kata.birthday_greetings.domain;
 
 public class Employee {
 
@@ -9,7 +7,7 @@ public class Employee {
 	private final String firstName;
 	private final String email;
 
-	public Employee(String firstName, String lastName, String birthDate, String email) throws ParseException {
+	public Employee(String firstName, String lastName, String birthDate, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = new XDate(birthDate);
